@@ -12,8 +12,7 @@ import AlertTemplate from "react-alert-template-basic";
 
 import NavBar from "./layout/NavBar";
 import Dashboard from "./leads/Dashboard";
-import Alerts from "./layout/Alerts";
-import Login from "./auth/Login";
+import Alerts from "./layout/Alerts"; 
 import Register from "./auth/Register";
 import PrivateRoute from "./common/PrivateRoute";
 
@@ -43,8 +42,7 @@ class App extends Component {
               <div className="container">
                 <Switch>
                   <PrivateRoute exact path="/" component={Dashboard} />
-                  <Route exact path="/register" component={Register} />
-                  <Route exact path="/login" component={Login} />
+                  <Route exact path="/register" component={Register} /> 
                 </Switch>
               </div>
             </Fragment>
