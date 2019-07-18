@@ -10,15 +10,22 @@ import {
 import { Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
 
+import Home from "./layout/Home";
+import LeadDetails from "./leads/LeadDetails";
+import SystemProfile from "./leads/SystemProfile";
+import SystemDashboard from "./system/SystemDashboard";
+
 import NavBar from "./layout/NavBar";
-import Dashboard from "./leads/Dashboard";
-import Alerts from "./layout/Alerts"; 
+import Alerts from "./layout/Alerts";
 import Register from "./auth/Register";
+import Login from "./auth/LogIn";
 import PrivateRoute from "./common/PrivateRoute";
 
 import { Provider } from "react-redux";
 import store from "../store";
 import { loadUser } from "../actions/auth";
+
+import "./App.css";
 
 // Alert Options
 const alertOptions = {
@@ -39,12 +46,19 @@ class App extends Component {
             <Fragment>
               <NavBar />
               <Alerts />
-              <div className="container">
-                <Switch>
-                  <PrivateRoute exact path="/" component={Dashboard} />
-                  <Route exact path="/register" component={Register} /> 
-                </Switch>
-              </div>
+
+              <Switch>
+                <PrivateRoute exact path="/" component={SystemDashboard} />
+                <PrivateRoute
+                  exact
+                  path="/conditions"
+                  component={LeadDetails}
+                />
+                <PrivateRoute exact path="/profile" component={SystemProfile} />
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+              </Switch>
             </Fragment>
           </Router>
         </AlertProvider>

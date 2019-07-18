@@ -28,9 +28,10 @@ export class Login extends Component {
     }
     const { username, password } = this.state;
     return (
-      <div className="col-md-6 m-auto">
+      <div className="col-md-6 m-auto ">
         <div className="card card-body mt-5">
           <h2 className="text-center">Login</h2>
+          <hr />
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label>Username</label>
@@ -40,6 +41,7 @@ export class Login extends Component {
                 name="username"
                 onChange={this.onChange}
                 value={username}
+                required
               />
             </div>
 
@@ -51,15 +53,16 @@ export class Login extends Component {
                 name="password"
                 onChange={this.onChange}
                 value={password}
+                required
               />
             </div>
 
             <div className="form-group">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn btn-block btn-primary">
                 Login
               </button>
             </div>
-            <p>
+            <p className="text-center">
               Don't have an account? <Link to="/register">Register</Link>
             </p>
           </form>

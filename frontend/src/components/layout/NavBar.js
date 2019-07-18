@@ -15,14 +15,18 @@ export class NavBar extends Component {
 
     const authLinks = (
       <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-        <span className="navbar-text mr-3">
-          <strong>{user ? `Welcome ${user.username}` : ""}</strong>
-        </span>
         <li className="nav-item">
-          <button
-            onClick={this.props.logout}
-            className="nav-link btn btn-info btn-sm text-light"
-          >
+          <Link to="/" className="nav-link">
+            My Systems
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/profile" className="nav-link">
+            My Profile
+          </Link>
+        </li>
+        <li className="nav-item">
+          <button onClick={this.props.logout} className="btn nav-link">
             Logout
           </button>
         </li>
@@ -45,7 +49,7 @@ export class NavBar extends Component {
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container">
           <button
             className="navbar-toggler"
@@ -59,9 +63,9 @@ export class NavBar extends Component {
             <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a className="navbar-brand" href="#">
-              Lead Manager
-            </a>
+            <Link className="navbar-brand" to="/home">
+              Hydrophiles App
+            </Link>
           </div>
           {isAuthenticated ? authLinks : guestLinks}
         </div>

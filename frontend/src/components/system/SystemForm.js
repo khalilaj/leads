@@ -1,35 +1,46 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addLead } from "../../actions/leads";
+import { addSystem } from "../../actions/system";
 
-export class LeadForm extends Component {
+export class SystemForm extends Component {
   state = {
-    name: "",
-    email: "",
-    message: ""
+    system_name: "",
+    system_description: "",
+    system_photo: null
   };
 
   static propTypes = {
-    addLead: PropTypes.func.isRequired
+    addSystem: PropTypes.func.isRequired
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  handleImageChange = e => {
+    this.setState({
+      system_photo: e.target.files[0]
+    });
+  };
+
   onSubmit = e => {
     e.preventDefault();
-    const { name, email, message } = this.state;
-    const lead = { name, email, message };
-    this.props.addLead(lead);
+    const { system_name, system_description, system_photo } = this.state;
+    const formData = new FormData();
+
+    formData.append("system_name", system_name);
+    formData.append("system_description", system_description);
+    formData.append("system_photo", system_photo);
+    this.props.addSystem(formData);
+
     this.setState({
-      name: "",
-      email: "",
-      message: ""
+      system_name: "",
+      system_description: "",
+      system_photo: ""
     });
   };
 
   render() {
-    const { name, email, message } = this.state;
+    const { system_name, system_description, system_photo } = this.state;
     return (
       <div className="mt-3">
         <button
@@ -65,33 +76,33 @@ export class LeadForm extends Component {
               <div className="modal-body">
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
-                    <label>Name</label>
+                    <label>System Name</label>
                     <input
                       className="form-control"
                       type="text"
-                      name="name"
+                      name="system_name"
                       onChange={this.onChange}
-                      value={name}
+                      value={system_name}
                     />
                   </div>
                   <div className="form-group">
-                    <label>Email</label>
+                    <label>System Photo</label>
+                    <input
+                      type="file"
+                      id="system_photo"
+                      accept="image/png, image/jpeg"
+                      onChange={this.handleImageChange}
+                      required
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>System Description</label>
                     <input
                       className="form-control"
-                      type="email"
-                      name="email"
-                      onChange={this.onChange}
-                      value={email}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Message</label>
-                    <textarea
-                      className="form-control"
                       type="text"
-                      name="message"
+                      name="system_description"
                       onChange={this.onChange}
-                      value={message}
+                      value={system_description}
                     />
                   </div>
                   <div className="form-group text-center">
@@ -120,5 +131,5 @@ export class LeadForm extends Component {
 
 export default connect(
   null,
-  { addLead }
-)(LeadForm);
+  { addSystem }
+)(SystemForm);

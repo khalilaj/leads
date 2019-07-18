@@ -44,6 +44,7 @@ export class Register extends Component {
       <div className="col-md-6 m-auto">
         <div className="card card-body mt-5">
           <h2 className="text-center">Register</h2>
+          <hr />
           <form onSubmit={this.onSubmit}>
             <div className="form-group">
               <label>Username</label>
@@ -53,6 +54,7 @@ export class Register extends Component {
                 name="username"
                 onChange={this.onChange}
                 value={username}
+                required
               />
             </div>
             <div className="form-group">
@@ -63,6 +65,7 @@ export class Register extends Component {
                 name="email"
                 onChange={this.onChange}
                 value={email}
+                required
               />
             </div>
             <div className="form-group">
@@ -73,6 +76,7 @@ export class Register extends Component {
                 name="password"
                 onChange={this.onChange}
                 value={password}
+                required
               />
             </div>
             <div className="form-group">
@@ -83,14 +87,15 @@ export class Register extends Component {
                 name="password2"
                 onChange={this.onChange}
                 value={password2}
+                required
               />
             </div>
             <div className="form-group">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-block btn-primary">
                 Register
               </button>
             </div>
-            <p>
+            <p className="text-center">
               Already have an account? <Link to="/login">Login</Link>
             </p>
           </form>
